@@ -1,6 +1,4 @@
 import React from 'react';
-import autoBind from 'react-autobind';
-import assign from 'object-assign';
 
 
 const Form = React.createClass({
@@ -16,9 +14,9 @@ const Form = React.createClass({
   propTypes: {
     currentEmployee: React.PropTypes.object.isRequired,
     onCancel: React.PropTypes.func.isRequired,
-    addEmployee: React.PropTypes.func.isRequired,
-    updateEmployee: React.PropTypes.func.isRequired,
-    action: React.PropTypes.string.isRequired
+    onAddEmployee: React.PropTypes.func.isRequired,
+    onUpdateEmployee: React.PropTypes.func.isRequired,
+    buttonAction: React.PropTypes.string.isRequired
   },
 
 
@@ -68,10 +66,10 @@ const Form = React.createClass({
       return false;
     }
     else {
-      if (this.props.action == 'update')
-        this.props.updateEmployee(this.state.employee);
-      else if (this.props.action == 'add')
-        this.props.addEmployee(this.state.employee);
+      if (this.props.buttonAction == 'update')
+        this.props.onUpdateEmployee(this.state.employee);
+      else if (this.props.buttonAction == 'add')
+        this.props.onAddEmployee(this.state.employee);
     }
   },
 
@@ -146,7 +144,7 @@ const Form = React.createClass({
               <input className="form-control" type="email" placeholder = "email(required)" required = "true" value = {this.state.employee.email ? this.state.employee.email : ''} onChange = {this.onEmailChange} />
             </div>
             <div className="btn-toolbar">
-              <button className="btn btn-success" type = "submit">{this.props.action} a employee</button>
+              <button className="btn btn-success" type = "submit">{this.props.buttonAction} a employee</button>
               <button className="btn btn-danger" onClick = {this.props.onCancel} >cancel</button>
             </div>
           </form>

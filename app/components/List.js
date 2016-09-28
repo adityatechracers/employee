@@ -4,14 +4,38 @@ import ListItem from './ListItem';
 
 const List = React.createClass({
 
+	makeId() {
+		var text = "";
+		var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+		for (var i = 0; i < 5; i++)
+			text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+		return text;
+	},
+
 	getInitialState() {
 		return {
 		}
 	},
 
+	componentWillMount() {
+	},
+
+	componentWillReceiveProps(nextProps) {
+	},
+
 	renderData() {
-		let listItems = this.props.employees.map((employee) => {
-			return (<ListItem key={employee.id} onEditEmployee = {this.props.onEditEmployee} onDeleteEmployee = {this.props.onDeleteEmployee} editClass ={employee.id === this.props.activeId ? 'highlight-row' : null}  details = {employee} />)
+		let listItems = this.props.employees && this.props.employees.map((employee) => {
+			return (
+				<ListItem
+					key={employee.id + this.makeId() }
+					onEdit = {() => this.props.onEditEmployee(employee) }
+					onDelete = {() => this.props.onDeleteEmployee(employee) }
+					editClass={employee.id === this.props.activeId ? 'highlight-row' : null}
+					details = {employee}
+					/>
+			)
 		})
 		return (listItems)
 	},

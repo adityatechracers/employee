@@ -1,36 +1,40 @@
 import React from 'react';
 import autoBind from 'react-autobind';
 
-const ListItem = React.createClass({
-
-  getInitialState() {
-    return {
-    }
-  },
-
-  _handleEdit() {
-    this.props.onEditEmployee(this.props.details)
-  },
-
-  _handleDelete() {
-    this.props.onDeleteEmployee(this.props.details)
-  },
+const ListItem = (props) => ({
 
   render() {
-    const employeeDetails = this.props.details
-    const employeeRow = Object.keys(this.props.details).map(function (key, idx) {
-      return (
-        <td key={idx + 1}>
-          {employeeDetails[key]}
-        </td>
-      )
-    })
-
+    const employeeDetails = props.details
     return (
-      <tr className = {this.props.editClass} >
-        {employeeRow}
-        <td><button className="btn btn-warning btn-sm" onClick = {this._handleEdit}>Edit</button></td>
-        <td><button className="btn btn-danger btn-sm" onClick = {this._handleDelete}>Delete </button></td>
+      <tr className = {props.editClass} >
+        <td >
+          {employeeDetails.id}
+        </td>
+        <td >
+          {employeeDetails.name}
+        </td>
+        <td >
+          {employeeDetails.designation}
+        </td>
+        <td >
+          {employeeDetails.age}
+        </td>
+        <td >
+          {employeeDetails.email}
+        </td>
+        <td >
+          {employeeDetails.gender}
+        </td>
+        <td>
+          <button className="btn btn-warning btn-sm" onClick = {props.onEdit}>
+            Edit
+          </button>
+        </td>
+        <td>
+          <button className="btn btn-danger btn-sm" onClick = {props.onDelete}>
+            delete
+          </button>
+        </td>
       </tr>
     )
   }

@@ -5,11 +5,11 @@ module.exports = {
   context: path.join(__dirname, 'app'), //current folder as the reference to the other paths
 
   entry: {
-    javascript: './routes.js', //entry point for building scripts
+    javascript: './index.js', //entry point for building scripts
     html: './index.html'       //entry point for building html
   },
-  output: { 
-    path: path.join(__dirname, 'dist'), 
+  output: {
+    path: path.join(__dirname, 'dist'),
     filename: 'bundle.js'      //save result in 'dist' folder
   },
   module: {
@@ -27,16 +27,16 @@ module.exports = {
         loader: "file?name=[name].[ext]",
       },
       {
-        test: /\.css$/, 
-        loader: "style-loader!css-loader" 
+        test: /\.css$/,
+        loader: "style-loader!css-loader"
       },
-      { 
-        test: /\.png$/, 
-        loader: "url-loader?limit=100000" 
+      {
+        test: /\.png$/,
+        loader: "url-loader?limit=100000"
       },
-      { 
-        test: /\.jpg$/, 
-        loader: "file-loader" 
+      {
+        test: /\.jpg$/,
+        loader: "file-loader"
       }
     ]
   },
